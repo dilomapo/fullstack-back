@@ -1,23 +1,23 @@
 """
 App
 """
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, Response
 from persistencia import guardar_pedido
 
 app = Flask (__name__)
 
-@app.route("/pizza",methods=['POST'])
-def pizza():
+@app.route("/checksize",methods=['POST'])
+def checksize():
     """
     Pizza
     """
-    nombre = request.form.get("nm")
-    apellido = request.form.get("ap")
-    print("Nombre: "+nombre)
-    print("Apellido: "+apellido)
+    tamano = request.form.get("tam")
+    mensaje = ""
 
-    with open("pedidos.txt", "a", encoding="utf-8") as file:
-        file.write("")
-        file.close()
-        guardar_pedido(nombre, apellido)
-    return redirect("http://localhost/EJERCICIOS/Final/solicita_pedido.html", code=302)
+    if (tamano=="S"):
+        mensaje = "No disponible"
+    else:    
+        mensaje = "Disponible"
+    
+    print("Tamano: "+tamano)
+    return Response(mensaje, 200, {'Access-Control-Allow-Origin': '*'})
