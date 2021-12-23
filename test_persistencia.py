@@ -12,5 +12,5 @@ def test_guardar_pedido():
        firstline = file.readline()
        secondline = file.readline()
        file.close()
-    assert firstline == "-Pedro Gil de Diego\n"
-    assert secondline == "-Michael Jordan\n"
+     assert firstline == "-Pedro Gil de Diego\n"
+     assert secondline == "-Michael Jordan\n"
